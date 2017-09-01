@@ -1,9 +1,12 @@
-function [Theta1, Theta2, J_History] = FeedForwardBackProp(Theta1, Theta2, epoch, alpha, lambda, X, y, s1, s2, num_labels)
+function [Theta1, Theta2, J_History, Acc_History] = FeedForwardBackProp(Theta1, Theta2, epoch, alpha, lambda, X, y, s1, s2, num_labels, X_test, mu, stddev, y_test)
 
 %   Initialization
 m = size(X, 1); %   number of dataset
 J_History = zeros(epoch, 1);    %   record the cost of each iteration
+Acc_History = zeros(epoch, 1);  %   record the accuracy of each iteration
 Theta1grad = zeros(size(Theta1));   %   save the gradient of Theta1
+Theta1accugrad = zeros(size(Theta1));
+Theta2accugrad = zeros(size(Theta2));
 Theta2grad = zeros(size(Theta2));   %   save the gradient of Theta2
 a1 = [ones(m, 1), X];   %   add intercept terms to the input layer
 
@@ -25,7 +28,7 @@ for i = 1:epoch
     SumOfTheta2_R = sum(sum(Theta2(:, 2:s2 + 1) .^ 2));
     J_History(i) = J_History(i) + (lambda / (2 * m)) * (SumOfTheta1_R + SumOfTheta2_R); %   regularize the cost
 
-    %   Back Propagation and Compute regularized gradient of each weight
+    %   Back Propagation, Compute regularized gradient of each weight, Accumulate gradients for Adagrad
     temp = 0:num_labels - 1;
     for t = 1:m    %    back propagate
         yt = double(temp == y(t));
@@ -39,15 +42,18 @@ for i = 1:epoch
     Theta2grad = Theta2grad ./ m;
     Theta1grad(:, 2:end) = Theta1grad(:, 2:end) + (lambda / m) .* Theta1(:, 2:end);    %   compute regularized gradient of each weight
     Theta2grad(:, 2:end) = Theta2grad(:, 2:end) + (lambda / m) .* Theta2(:, 2:end);
+    Theta1accugrad = Theta1accugrad + Theta1grad .^ 2;  %   accumulate gradients for Adagrad
+    Theta2accugrad = Theta2accugrad + Theta2grad .^ 2;
+    
+    %   Adagrad
+    Theta1 = Theta1 - (alpha ./ sqrt(Theta1accugrad)) .* Theta1grad;
+    Theta2 = Theta2 - (alpha ./ sqrt(Theta2accugrad)) .* Theta2grad;
 
-    %   Gradient Descent
-    Theta1 = Theta1 - alpha .* Theta1grad;
-    Theta2 = Theta2 - alpha .* Theta2grad;
- 
+    %   Compute accuracy
+    Acc_History(i) = mean(double(predictions(X_test, mu, stddev, Theta1, Theta2) == y_test)) * 100;
+
     %   print the training status
-    if mod(i, 10) == 0
-        fprintf('Iteration: %d, Cost: %f\n', i, J_History(i));       
-    end
+    fprintf('Iteration: %d, Cost: %f, Accuracy: %f%%\n', i, J_History(i), Acc_History(i));       
 end
 
 end
