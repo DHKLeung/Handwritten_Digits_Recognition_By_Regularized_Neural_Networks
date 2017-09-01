@@ -20,9 +20,7 @@ epoch = 500;    %   number of times of batch gradient descent
 num_labels = 10;    %   number of labels
 s1 = 16;    %   number of nodes in layer 1
 s2 = 32;    %   number of nodes in layer 2
-s3 = 32;    %   number of nodes in layer 3
-s4 = 32;    %   number of nodes in layer 4
-s5 = num_labels;    %   number of nodes in layer 5, equals to num of labels
+s3 = num_labels;
 
 %%  Feature Scaling
 
@@ -32,12 +30,10 @@ s5 = num_labels;    %   number of nodes in layer 5, equals to num of labels
 
 Theta1 = randomInitializeWeights(s1, s2);
 Theta2 = randomInitializeWeights(s2, s3);
-Theta3 = randomInitializeWeights(s3, s4);
-Theta4 = randomInitializeWeights(s4, s5);
 
 %%  Feed Forward, Back Propagation
 
-[Theta1, Theta2, Theta3, Theta4, J_History] = FeedForwardBackProp(Theta1, Theta2, Theta3, Theta4, epoch, alpha, lambda, X, y, s1, s2, s3, s4, num_labels);
+[Theta1, Theta2, J_History] = FeedForwardBackProp(Theta1, Theta2, epoch, alpha, lambda, X, y, s1, s2, num_labels);
 
 %%  Display Cost by Iteration and Plot graphs
 
@@ -56,12 +52,8 @@ a1_t = [ones(m, 1), X_test];
 z2_t = a1_t * Theta1';
 a2_t = [ones(m, 1), sigmoid(z2_t)];
 z3_t = a2_t * Theta2';
-a3_t = [ones(m, 1), sigmoid(z3_t)];
-z4_t = a3_t * Theta3';
-a4_t = [ones(m, 1), sigmoid(z4_t)];
-z5_t = a4_t * Theta4';
-a5_t = softmax(z5_t);
-[temp, predict] = max(a5_t, [], 2);   %   find out the index of that max value and save in predict
+a3_t = softmax(z3_t);
+[temp, predict] = max(a3_t, [], 2);   %   find out the index of that max value and save in predict
 predict = predict - 1;  %   matlab's indexing starts from 1, but my code considers index 1 as digit 0
 fprintf('\nTested by test dataset.\n');
 fprintf('Accuracy: %f%%\n', mean(double(predict == y_test)) * 100);
