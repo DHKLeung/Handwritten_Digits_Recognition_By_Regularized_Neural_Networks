@@ -9,10 +9,10 @@ Acc_History = zeros(epoch, 1);  %   record the accuracy on training set of each 
 Acc_T_History = zeros(epoch, 1);  %   record the accuracy on testing set of each iteration
 Theta1grad = zeros(size(Theta1));   %   save the gradient of Theta1
 Theta2grad = zeros(size(Theta2));   %   save the gradient of Theta2
-Theta3grad = zeros(size(Theta3));
-Theta1accugrad = zeros(size(Theta1));
-Theta2accugrad = zeros(size(Theta2));
-Theta3accugrad = zeros(size(Theta3));
+Theta3grad = zeros(size(Theta3));   %   save the gradient of Theta3
+Theta1accugrad = zeros(size(Theta1));   %   accumulate the gradients of Theta1
+Theta2accugrad = zeros(size(Theta2));   %   accumulate the gradients of Theta2
+Theta3accugrad = zeros(size(Theta3));   %   accumulate the gradients of Theta3
 
 %   Process in Neural Network training
 for i = 1:epoch
