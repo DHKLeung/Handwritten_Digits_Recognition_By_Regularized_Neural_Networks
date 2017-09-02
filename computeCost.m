@@ -7,7 +7,7 @@ for k = 0:num_labels - 1    %   compute the non-regularized cost
 end
 SumOfTheta1_R = sum(sum(Theta1(:, 2:s1 + 1) .^ 2)); %   compute all the terms for regularization
 SumOfTheta2_R = sum(sum(Theta2(:, 2:s2 + 1) .^ 2));
-SumOfTheta3_R = sum(sum(Theta3(:, 2:s3 + 1) .^ 2)); %   compute all the terms for regularization
+SumOfTheta3_R = sum(sum(Theta3(:, 2:s3 + 1) .^ 2));
 J_History(i) = J_History(i) + (lambda / (2 * m)) * (SumOfTheta1_R + SumOfTheta2_R + SumOfTheta3_R); %   regularize the cost
 
 end
