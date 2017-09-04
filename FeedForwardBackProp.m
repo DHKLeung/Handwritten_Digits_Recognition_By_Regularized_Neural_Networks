@@ -2,7 +2,7 @@ function [Theta1, Theta2, Theta3, J_History, J_T_History, Acc_History, Acc_T_His
 
 %   Initialization
 m = size(X, 1); %   number of dataset
-m_t = size(X_test, 1);
+m_t = size(X_test, 1);  %   number of test dataset
 J_History = zeros(epoch, 1);    %   record the cost on training set of each iteration
 J_T_History = zeros(epoch, 1);  %   record the cost on testing set of each iteration
 Acc_History = zeros(epoch, 1);  %   record the accuracy on training set of each iteration
