@@ -23,6 +23,9 @@ for i = 1:epoch
 
     %   Back Propagation, Compute regularized gradient of each weight, Accumulate gradients for Adagrad
     temp = 0:num_labels - 1;
+    Theta1grad = zeros(size(Theta1));   %   reset the gradient accumulator of Theta1
+    Theta2grad = zeros(size(Theta2));   %   reset the gradient accumulator of Theta2
+    Theta3grad = zeros(size(Theta3));   %   reset the gradient accumulator of Theta3
     for t = 1:m    %    back propagate
         yt = double(temp == y(t));
         delta4 = a4(t, :) - yt;
