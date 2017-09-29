@@ -49,22 +49,22 @@ Theta3 = randomInitializeWeights(s3, s4);
 figure('Name', 'Cost on the Training Data - Num of Iterations');
 plot(1:numel(J_History(:, 1)), J_History(:, 1), '-b', 'LineWidth', 2);
 xlabel('Num of Iterations');
-ylabel(strcat('Cost on the Training Data'));
+ylabel('Cost on the Training Data');
 
 %   Graph of Cost(Testing Data) - Iterations
 figure('Name', 'Cost on the Testing Data - Num of Iterations');
 plot(1:numel(J_T_History(:, 1)), J_T_History(:, 1), '-b', 'LineWidth', 2);
 xlabel('Num of Iterations');
-ylabel(strcat('Cost on the Testing Data'));
+ylabel('Cost on the Testing Data');
 
 %   Graph of Accuracy(Training Data) - Iterations
 figure('Name', 'Accuracy on the Training Data - Num of Iterations');
 plot(1:numel(Acc_History(:, 1)), Acc_History(:, 1), '-b', 'LineWidth', 2);
 xlabel('Num of Iterations');
-ylabel(strcat('Accuracy on the Training Data'));
+ylabel('Accuracy on the Training Data');
 
 %   Graph of Accuracy(Testing Data) - Iterations
 figure('Name', 'Accuracy on the Testing Data - Num of Iterations');
 plot(1:numel(Acc_T_History(:, 1)), Acc_T_History(:, 1), '-b', 'LineWidth', 2);
 xlabel('Num of Iterations');
-ylabel(strcat('Accuracy on the Testing Data'));
+ylabel('Accuracy on the Testing Data');
