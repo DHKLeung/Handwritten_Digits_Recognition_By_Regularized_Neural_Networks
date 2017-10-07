@@ -1,4 +1,4 @@
-%%  Pen-Based Recognition of Handwritten Digits By Regularized Neural Networks
+%%  Pen-Based Recognition of Handwritten Digits By Standard Neural Networks
 %   Programed by Daniel H. Leung 23/08/2017 (DD/MM/YYYY)
 %   For detail, please refer to the comments in codes and README.md
 
