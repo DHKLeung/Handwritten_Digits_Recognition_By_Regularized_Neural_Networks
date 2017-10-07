@@ -1,5 +1,5 @@
-# Handwritten_Digits_Recognition_By_Regularized_Neural_Networks
-Recognizing Pen-Based Recognition of Handwritten Digits by regularized neural networks. Data Set is from UC Irvine Machine Learning Repository.
+# Handwritten_Digits_Recognition_By_Standard_Neural_Networks
+Recognizing Pen-Based Recognition of Handwritten Digits by standard neural networks. Data Set is from UC Irvine Machine Learning Repository.
 
 Data Set is from Irvine Machine Learning Repository. Link: http://archive.ics.uci.edu/ml/datasets/Pen-Based+Recognition+of+Handwritten+Digits
 
